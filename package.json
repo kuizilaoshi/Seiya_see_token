@@ -1,16 +1,44 @@
 {
   "name": "codex-usage-widget",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "Desktop widget for local Codex usage snapshots",
   "main": "src/main.js",
   "private": true,
   "license": "MIT",
   "scripts": {
     "start": "electron .",
+    "dist": "electron-builder --win nsis --x64",
     "test": "node test/projectUsageReader.test.js && node test/codexRateLimits.test.js && node test/quotaState.test.js && node test/refreshControllers.test.js",
     "create-shortcut": "powershell.exe -ExecutionPolicy Bypass -File scripts/create-shortcut.ps1"
   },
-  "dependencies": {
-    "electron": "^43.2.0"
+  "devDependencies": {
+    "electron": "^43.2.0",
+    "electron-builder": "^26.15.3"
+  },
+  "author": "Seiya",
+  "repository": { "type": "git", "url": "https://github.com/kuizilaoshi/Seiya_see_token.git" },
+  "build": {
+    "appId": "com.seiya.see-token",
+    "productName": "Seiya See Token",
+    "directories": { "output": "dist" },
+    "files": ["src/**/*", "assets/**/*", "package.json", "LICENSE", "README.md"],
+    "extraFiles": [{ "from": "LICENSE", "to": "LICENSE.Seiya.txt" }],
+    "win": {
+      "target": ["nsis"],
+      "icon": "assets/app-icon-borderless.ico",
+      "artifactName": "Seiya-See-Token-Setup-${version}-${arch}.${ext}",
+      "signExecutable": false
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "Seiya See Token",
+      "runAfterFinish": false,
+      "license": "LICENSE",
+      "deleteAppDataOnUninstall": false
+    }
   }
 }

@@ -14,6 +14,12 @@ const { createQuotaRetryScheduler } = require('./quotaRetry');
 const { createUsageRefreshController } = require('./usageRefresh');
 const { createWatchRefreshScheduler } = require('./watchRefresh');
 
+// Installed builds keep preferences separate from existing source-run copies.
+if (app.isPackaged) {
+  app.setPath('userData', path.join(app.getPath('appData'), 'SeiyaSeeToken'));
+  app.setAppUserModelId('com.seiya.see-token');
+}
+
 app.disableHardwareAcceleration();
 app.commandLine.appendSwitch('disable-gpu');
 app.commandLine.appendSwitch('disable-software-rasterizer');
@@ -105,7 +111,7 @@ const buildTrayMenu = () => {
     { label: '收进托盘', click: destroyWindow },
     { label: '立即刷新', click: refreshAll },
     { type: 'separator' },
-    { label: '打开项目文件夹', click: () => shell.openPath(app.getAppPath()) },
+    { label: app.isPackaged ? '打开安装文件夹' : '打开项目文件夹', click: () => shell.openPath(app.isPackaged ? path.dirname(process.execPath) : app.getAppPath()) },
     { type: 'separator' },
     { label: '退出', click: quitApp }
   ]));
