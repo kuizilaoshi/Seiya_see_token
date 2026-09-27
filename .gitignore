@@ -1,0 +1,12 @@
+node_modules/
+_output/
+dist/
+coverage/
+*.lnk
+*.log
+*.jsonl
+.env
+.env.*
+auth.json
+settings.json
+.codex/

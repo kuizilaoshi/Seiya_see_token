@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Codex 剩余用量</title>
+    <link rel="stylesheet" href="./styles.css">
+  </head>
+  <body>
+    <main class="widget">
+      <header class="titlebar">
+        <div class="drag-area">
+          <span class="paw-dot"></span>
+          <span>Codex 便利贴</span>
+        </div>
+        <button id="pinBtn" class="icon-btn" title="置顶/取消置顶">↑</button>
+        <button id="refreshBtn" class="icon-btn" title="刷新">↻</button>
+        <button id="closeBtn" class="icon-btn close" title="关闭">×</button>
+      </header>
+
+      <section class="hero">
+        <div class="mascot-stage">
+          <img src="../assets/mascot.png" alt="">
+        </div>
+        <div class="meter">
+          <div class="label">剩余用量</div>
+          <div id="remaining" class="remaining">--%</div>
+          <div class="ring">
+            <svg viewBox="0 0 120 120">
+              <circle cx="60" cy="60" r="50" class="track"></circle>
+              <circle id="ringValue" cx="60" cy="60" r="50" class="value"></circle>
+            </svg>
+          </div>
+        </div>
+      </section>
+
+      <section class="summary">
+        <div><span>已用</span><strong id="used">--%</strong></div>
+        <div><span>窗口</span><strong id="windowLabel">--</strong></div>
+        <div><span>重置</span><strong id="resetLabel">--</strong></div>
+      </section>
+
+      <section class="projects">
+        <div class="section-head">
+          <span>项目用量</span>
+          <em>本地估算</em>
+        </div>
+        <div id="projectList" class="project-list">
+          <div class="empty">正在读取本机 Codex 日志...</div>
+        </div>
+      </section>
+
+      <footer><span id="status">0 Token · 60 秒兜底刷新</span></footer>
+
+      <div id="closeDialog" class="close-dialog" hidden>
+        <div class="dialog-card">
+          <strong>要怎么关闭？</strong>
+          <p>收进托盘会释放界面内存，额度数字继续更新；直接退出会结束小组件。</p>
+          <div class="dialog-actions">
+            <button id="minimizeTrayBtn">收进托盘</button>
+            <button id="quitBtn">直接退出</button>
+            <button id="cancelCloseBtn">取消</button>
+          </div>
+        </div>
+      </div>
+    </main>
+    <script src="./renderer.js"></script>
+  </body>
+</html>
