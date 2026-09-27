@@ -4,6 +4,7 @@
   "description": "Desktop widget for local Codex usage snapshots",
   "main": "src/main.js",
   "private": true,
+  "license": "MIT",
   "scripts": {
     "start": "electron .",
     "test": "node test/projectUsageReader.test.js && node test/codexRateLimits.test.js && node test/quotaState.test.js && node test/refreshControllers.test.js",
